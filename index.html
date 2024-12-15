@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>African Countries</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .country {
+      width: 300px;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      background-color: #fff;
+    }
+    .country img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .country h3 {
+      margin: 10px 0;
+    }
+    .country p {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  // JSON data representing African countries
+  const countries = [
+    {
+      "name": "Nigeria",
+      "capital": "Abuja",
+      "description": "The most populous country in Africa, known for its diverse culture and economy.",
+      "image": "https://via.placeholder.com/100",
+      "color": "#FFB6C1"
+    },
+    {
+      "name": "South Africa",
+      "capital": "Pretoria",
+      "description": "Famous for its stunning landscapes and rich history.",
+      "image": "https://via.placeholder.com/100",
+      "color": "#87CEFA"
+    },
+    {
+      "name": "Egypt",
+      "capital": "Cairo",
+      "description": "Home to ancient pyramids and the Nile River.",
+      "image": "https://via.placeholder.com/100",
+      "color": "#90EE90"
+    },
+    {
+      "name": "Kenya",
+      "capital": "Nairobi",
+      "description": "Renowned for its wildlife safaris and national parks.",
+      "image": "https://www.google.com/imgres?q=egypt%20flag&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Ff%2Ffe%2FFlag_of_Egypt.svg%2F800px-Flag_of_Egypt.svg.png&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFlag_of_Egypt&docid=7ZRUqWjAev6qAM&tbnid=V0TjHZWYYhZC1M&vet=12ahUKEwj-yY6Ts6qKAxWUq4kEHYnbEDkQM3oECBUQAA..i&w=800&h=534&hcb=2&ved=2ahUKEwj-yY6Ts6qKAxWUq4kEHYnbEDkQM3oECBUQAA",
+      "color": "#FFD700"
+    }
+  ];
+
+  // Extract name from URL params if available
+  const urlParams = new URLSearchParams(window.location.search);
+  const filterName = urlParams.get('name');
+
+  // Filter and render countries
+  const container = document.body;
+  countries
+    .filter(country => !filterName || country.name === filterName)
+    .forEach(country => {
+      const countryDiv = document.createElement('div');
+      countryDiv.className = 'country';
+      countryDiv.style.borderColor = country.color;
+      countryDiv.innerHTML = `
+        <img src="${country.image}" alt="${country.name}">
+        <h3>${country.name}</h3>
+        <h4 style="color: ${country.color};">Capital: ${country.capital}</h4>
+        <p>${country.description}</p>
+      `;
+      container.appendChild(countryDiv);
+    });
+</script>
+
+</body>
+</html>
